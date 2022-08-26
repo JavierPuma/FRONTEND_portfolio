@@ -1,0 +1,26 @@
+<aside>
+    <!--
+      - Botón para abrir/cerrar barra de navegación. 
+      - Bindeamos el evento personalizado (onToggleButton) y ejecutamos la función para modificar el estado del sidebar, tomandolo como parámetro. -->
+    <app-toggle-button
+      (onToggleButton)="toggleSidebar(sideBar)"
+    ></app-toggle-button>
+    <!-- 
+      - Le damos el nombre de variable #sideBar para ser utilizado como parámetro. Utilizamos la directiva [ngClass] para agregar/quitar la clase en base a la propiedad 'isOpen'.   
+      - Bindeamos el evento (windows:resize) para ejecutar la función cada vez que el tamaño de la ventana cambie, modificando el estado de 'isOpen'. -->
+    <nav #sideBar id="navbar" class="sidebar" [ngClass]="{ hidebar: !isOpen }">
+      <app-edit-button
+        class="align-self-start p-2"
+        [isEditing]="isEditing"
+        (onToggleEdition)="toggleEdition($event); makeScrollable(sideBar); reloadPersona()"
+        (window:resize)="onResize($event)"
+      ></app-edit-button>
+  
+      <app-navbar-item
+        [personaData]="personaData"
+        [isEditing]="isEditing"
+        (onItemUpdate)="actualizarPersona($event); makeScrollable(sideBar)"
+        (onToggleItem)="toggleEdition($event); makeScrollable(sideBar)"
+      ></app-navbar-item>
+    </nav>
+  </aside>

@@ -1,0 +1,7 @@
+<!-- 
+- Creamos los botones de edicion. Los mismos aparecen/desaparecen dependiendo de la propiedad 'isEditing'.
+- Al hacerles click cambian el estado de 'isEditing'.
+-->
+<span tabindex="0" id="editionIcon" class="edit-icon" *ngIf="isUserLogged">
+    <i class="bi bi-pencil-square" [ngClass]="!isEditing ? 'bi bi-pencil-square' : 'bi bi-x-square'" (click)="toggleEdition()"></i>
+  </span>

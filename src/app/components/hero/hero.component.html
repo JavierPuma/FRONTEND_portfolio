@@ -1,0 +1,14 @@
+<!--Home/Hero Image-->
+<section
+  id="inicio"
+  class="hero-container d-flex align-items-center justify-content-center"
+  [ngStyle]="{ 'background-image': 'url(' + personaData!.banner_url + ')' }"
+>
+  <div
+    id="heroText"
+    class="home-content opacity-0 hideText"
+    >
+    <h1 class="display-3 fw-bold">{{ personaData!.nombre }}</h1>
+    <p class="fs-4">{{ personaData!.titulo }}</p>
+  </div>
+</section>

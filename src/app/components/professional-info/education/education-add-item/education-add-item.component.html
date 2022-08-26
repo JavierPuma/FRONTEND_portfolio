@@ -1,0 +1,108 @@
+<form #educacionFormAdd="ngForm" (ngSubmit)="toggleAdding(); addItem()" class="editable-item">
+    <h4 class="text-center">Agregar</h4>
+    <div class="mb-2">
+      <label for="educacionTitulo" class="form-label">Titulo</label>
+      <input
+        #educacionTitulo="ngModel"
+        id="educacionTitulo"
+        name="educacionTitulo"
+        type="text"
+        class="form-control mb-3"
+        placeholder="Título"
+        autocomplete="off"
+        maxlength="60"
+        [class]="{
+          'is-invalid':
+            educacionTitulo.errors &&
+            (educacionTitulo.dirty || educacionTitulo.touched)
+        }"
+        [(ngModel)]="educacionItem!.titulo"
+      />
+      <div *ngIf="educacionTitulo.errors?.['maxlength']" class="text-danger mt-2">
+        <p>Máximo 60 carácteres.</p>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label for="educacionFecha" class="form-label">Fecha</label>
+      <input
+        #educacionFecha="ngModel"
+        id="educacionFecha"
+        name="educacionFecha"
+        type="text"
+        class="form-control mb-3"
+        placeholder="Inicio - Fin"
+        autocomplete="off"
+        maxlength="30"
+        [class]="{
+          'is-invalid':
+            educacionFecha.errors &&
+            (educacionFecha.dirty || educacionTitulo.touched)
+        }"
+        [(ngModel)]="educacionItem!.fecha"
+      />
+      <div *ngIf="educacionTitulo.errors?.['maxlength']" class="text-danger mt-2">
+        <p>Máximo 30 carácteres.</p>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label for="educacionInstitucion" class="form-label">Lugar</label>
+      <input
+        #educacionInstitucion="ngModel"
+        id="educacionInstitucion"
+        name="educacionInstitucion"
+        type="text"
+        class="form-control mb-3"
+        placeholder="Institución"
+        autocomplete="off"
+        maxlength="60"
+        [class]="{
+          'is-invalid':
+            educacionInstitucion.errors &&
+            (educacionInstitucion.dirty || educacionInstitucion.touched)
+        }"
+        [(ngModel)]="educacionItem!.institucion"
+      />
+    </div>
+    <div *ngIf="educacionTitulo.errors?.['maxlength']" class="text-danger mt-2">
+      <p>Máximo 60 carácteres.</p>
+    </div>
+    <div class="mb-2">
+      <label for="educacionDescripcion" class="form-label">Descripcion</label>
+      <textarea
+        #educacionDescripcion="ngModel"
+        id="educacionDescripcion"
+        name="educacionDescripcion"
+        rows="5"
+        type="text"
+        class="form-control mb-3"
+        maxlength="500"
+        [class]="{
+          'is-invalid':
+            educacionDescripcion.errors &&
+            (educacionDescripcion.dirty || educacionDescripcion.touched)
+        }"
+        placeholder="Breve descripción de la carrera/curso/etc..."
+        [(ngModel)]="educacionItem!.descripcion"
+      ></textarea>
+      <div *ngIf="educacionTitulo.errors?.['maxlength']" class="text-danger mt-2">
+        <p>Máximo 500 carácteres.</p>
+      </div>
+    </div>
+    <!-- Botones para guardar/cancelar -->
+    <div class="p-2 text-center">
+      <button
+        type="submit"
+        class="btn btn-outline-success m-2"
+        [disabled]="!educacionFormAdd.form.valid"
+      >
+        <i id="saveIcon" class="bi bi-check2-circle"></i> Guardar
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="toggleAdding()"
+      >
+        <i id="cancelIcon" class="bi bi-x-circle"></i> Cancelar
+      </button>
+    </div>
+  </form>

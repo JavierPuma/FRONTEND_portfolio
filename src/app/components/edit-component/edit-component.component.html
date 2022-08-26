@@ -1,0 +1,14 @@
+<!-- Textarea para contenido editable -->
+<textarea title= rows="3" class="editable-item" [(ngModel)]="seccionEditable.descripcion"></textarea>
+<!-- Botones para guardar/cancelar -->
+<div class="p-2">
+  <button
+    class="btn btn-outline-success me-2"
+    (click)="toggleEdition(); saveChanges()"
+  >
+    <i id="saveIcon" class="bi bi-check2-circle"></i> Guardar
+  </button>
+  <button class="btn btn-outline-danger" (click)="toggleEdition(); reload()">
+    <i id="cancelIcon" class="bi bi-x-circle"></i> Cancelar
+  </button>
+</div>

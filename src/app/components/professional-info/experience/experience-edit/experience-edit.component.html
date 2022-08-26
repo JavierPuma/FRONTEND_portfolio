@@ -1,0 +1,104 @@
+<form
+  #expForm="ngForm"
+  (ngSubmit)="toggleEdition(); saveChanges()"
+  class="editable-item"
+>
+  <h4 class="text-center">Editar</h4>
+  <div class="mb-2">
+    <label for="expPuesto" class="form-label">Titulo</label>
+    <input
+      #expPuesto="ngModel"
+      id="expPuesto"
+      name="expPuesto"
+      type="text"
+      class="form-control mb-3"
+      [class]="{
+        'is-invalid': expPuesto.errors && (expPuesto.dirty || expPuesto.touched)
+      }"
+      placeholder="Puesto"
+      autocomplete="off"
+      maxlength="60"
+      [(ngModel)]="experienciaEditable!.puesto"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="expPuesto.errors?.['maxlength']">
+    <p>Máximo 60 carácteres.</p>
+  </div>
+  <div class="mb-2">
+    <label for="expFecha" class="form-label">Fecha</label>
+    <input
+      #expFecha="ngModel"
+      id="expFecha"
+      name="expFecha"
+      type="text"
+      class="form-control mb-3"
+      [class]="{
+        'is-invalid': expFecha.errors && (expFecha.dirty || expFecha.touched)
+      }"
+      placeholder="Inicio - Fin"
+      autocomplete="off"
+      maxlength="30"
+      [(ngModel)]="experienciaEditable!.fecha"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="expPuesto.errors?.['maxlength']">
+    <p>Máximo 30 carácteres.</p>
+  </div>
+  <div class="mb-2">
+    <label for="expLugar" class="form-label">Lugar</label>
+    <input
+      #expLugar="ngModel"
+      id="expLugar"
+      name="expLugar"
+      type="text"
+      class="form-control mb-3"
+      [class]="{
+        'is-invalid': expFecha.errors && (expFecha.dirty || expFecha.touched)
+      }"
+      placeholder="Empresa/Empleador"
+      autocomplete="off"
+      maxlength="60"
+      [(ngModel)]="experienciaEditable!.empleador"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="expPuesto.errors?.['maxlength']">
+    <p>Máximo 60 carácteres.</p>
+  </div>
+  <div class="mb-2">
+    <label for="expDescripcion" class="form-label">Descripcion</label>
+    <textarea
+      #expDescripcion="ngModel"
+      id="expDescripcion"
+      name="expDescripcion"
+      rows="5"
+      type="text"
+      class="form-control mb-3"
+      [class]="{
+        'is-invalid': expFecha.errors && (expFecha.dirty || expFecha.touched)
+      }"
+      placeholder="Breve descripción de la carrera o puesto..."
+      maxlength="500"
+      [(ngModel)]="experienciaEditable!.descripcion"
+    ></textarea>
+  </div>
+  <div class="text-danger mt-2" *ngIf="expPuesto.errors?.['maxlength']">
+    <p>Máximo 500 carácteres.</p>
+  </div>
+  <!-- Botones para guardar/cancelar -->
+  <div class="p-2 text-center">
+    <button
+      type="submit"
+      class="btn btn-outline-success m-2"
+      [disabled]="!expForm.form.valid"
+    >
+      <i id="saveIcon" class="bi bi-check2-circle"></i> Guardar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="toggleEdition(); reload()"
+    >
+      <i id="cancelIcon" class="bi bi-x-circle"></i> Cancelar
+    </button>
+  </div>
+</form>

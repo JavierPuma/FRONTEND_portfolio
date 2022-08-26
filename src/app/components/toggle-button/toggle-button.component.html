@@ -1,0 +1,12 @@
+<!-- 
+  - Bindeamos el evento (click) para ejecutar la función que cambia el estado de 'isOpen' y emite un evento personalizado (onToggleButton).
+  - Bindeamos el evento (windows:resize) para ejecutar la función cada vez que el tamaño de la ventana cambie, modificando el estado de 'isOpen'.
+ -->
+ <div
+ class="toggler-btn"
+ (click)="toggleSidebar()"
+ (window:resize)="onResize($event)"
+>
+ <i class="bi bi-list fs-5 open-btn" [ngClass]="{ 'd-none': isOpen }"></i>
+ <i class="bi bi-x-lg close-btn" [ngClass]="{ 'd-none': !isOpen }"></i>
+</div>

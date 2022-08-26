@@ -1,0 +1,60 @@
+<!--Sección "Habilidades"-->
+<section id="habilidades" class="section-info">
+    <div class="container">
+      <div class="section-title">
+        <div
+          class="section-header d-flex justify-content-between align-items-center"
+        >
+          <h2 class="fw-bold">Habilidades</h2>
+          <app-edit-button
+            [isEditing]="isEditing"
+            (onToggleEdition)="toggleEdition($event); reloadSeccion()"
+          ></app-edit-button>
+        </div>
+        <!-- Contenido editable, utilizamos directivas y binding para manejarlo-->
+        <app-edit-component
+          *ngIf="isEditing"
+          [seccionEditable]="seccionData"
+          (onToggleEdition)="toggleEdition($event)"
+          (onSave)="updateSeccion($event)"
+          (onCancel)="reloadSeccion()"
+        ></app-edit-component>
+        <p *ngIf="!isEditing" [innerHTML]="seccionData!.descripcion"></p>
+      </div>
+  
+      <div class="row">
+  
+        <div class="col-lg-4 mt-5">
+          <app-skills-list
+            [habilidadesTitulo]="'Front-End'"
+            [habilidadesList]="habilidadesFront"
+            [habilidadTipo]="'Frontend'"
+            [barColor]="'bg-warning'"
+            id="frontend"
+            (onAddUpdate)="reloadData()"
+          ></app-skills-list>
+        </div>
+  
+        <app-skills-list
+          [habilidadesTitulo]="'Back-End'"
+          [habilidadesList]="habilidadesBack"
+          [habilidadTipo]="'Backend'"
+          [barColor]="'bg-info'"
+          id="backend"
+          class="col-lg-4 mt-5"
+          (onAddUpdate)="reloadData()"
+        ></app-skills-list>
+  
+        <app-skills-list
+          [habilidadesTitulo]="'Soft-Skills'"
+          [habilidadesList]="habilidadesSoft"
+          [habilidadTipo]="'Soft'"
+          [barColor]="'bg-success'"
+          id="soft"
+          class="col-lg-4 mt-5"
+          (onAddUpdate)="reloadData()"
+        ></app-skills-list>
+      </div>
+      
+    </div>
+  </section>

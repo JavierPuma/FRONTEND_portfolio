@@ -1,0 +1,29 @@
+<div>
+    <div
+      class="professional-header d-flex justify-content-between align-items-center"
+    >
+      <h3 class="mb-3 fw-bold">Educación</h3>
+      <div class="mb-3">
+        <app-add-button
+          [isAdding]="isAdding"
+          (onToggleAdding)="toggleAdding($event)"
+        ></app-add-button>
+      </div>
+    </div>
+  
+    <app-education-add-item
+      *ngIf="isAdding"
+      [educacionList]="educacionData"
+      (onToggleAdding)="toggleAdding($event)"
+      (onAddItem)="reloadData();"
+    ></app-education-add-item>
+    <!-- Iteramos a traves del array de elementos, y generamos uno nuevo con su respectivo Data Binding. -->
+  
+    <div *ngFor="let educacionItem of educacionData; let i = index">
+      <app-education-item
+        *ngIf="!isEditing"
+        [educacionItem]="educacionItem"
+        (onItemDelete)="deleteItem(educacionItem, i)"
+      ></app-education-item>
+    </div>
+  </div>

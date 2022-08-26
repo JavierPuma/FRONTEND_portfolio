@@ -1,0 +1,62 @@
+/*
+==========
+BARRA DE NAVEGACIÓN
+==========
+*/
+.sidebar {
+    position: fixed;
+    z-index: 2000;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    width: 280px;
+    height: 100vh;
+    padding: 1rem 0;
+  
+    background-color: var(--dark);
+    color: #fff;
+  
+    transform: translateX(0);
+    transition: transform .5s ease-in-out;
+  
+    overflow-y: scroll;
+    direction: rtl;
+  }
+  
+  app-navbar-item {
+    direction: ltr;
+  }
+  
+  /* Permitimos en scroll en dispositivos de menor altura, pero escondemos la barra de scroll de los distintos dispositivos.  */
+  
+  @media (min-height: 800px) {
+    .sidebar {
+      overflow-y: hidden;
+      -ms-overflow-style: none;  
+    }
+    .sidebar::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
+  
+  /* Ocultamos la barra lateral si el usuario intenta "imprimir" el sitio.*/
+  @media print {
+    aside {
+      display: none;
+    }
+  }
+  
+  /*Propiedad que usamos para ocultar la barra de navegación.*/
+  .hidebar {
+    transform: translateX(-100%);
+    transition: transform .5s ease-in-out;
+  }
+  
+  .scroll-y, .scroll-y::-webkit-scrollbar{
+    overflow-y: scroll !important;
+    display: inherit;
+  }
+  

@@ -1,0 +1,27 @@
+.toggler-btn {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 3000;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    width: 40px;
+    height: 40px;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    color: var(--white);
+    background-color: var(--grey);
+    border-radius: 100%;
+  }
+  
+  @media (min-width: 1200px) {
+    /*
+        - Configuramos el boton para que desaparezca en resoluciones mayores a 1200px.
+        */
+    .toggler-btn {
+      display: none;
+    }
+  }

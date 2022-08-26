@@ -1,0 +1,41 @@
+<div class="card" *ngIf="!isEditing">
+    <div class="card-img-container">
+      <img [src]="proyectoItem!.img_url" alt="Portfolio Argentina Programa" />
+      <span class="h2">Proyecto #{{ index + 1 }}</span>
+    </div>
+    <div class="card-body">
+      <div
+        class="item-title mb-2 d-flex justify-content-between align-items-center"
+      >
+        <h5 class="card-title">
+          {{ proyectoItem!.titulo }}
+        </h5>
+        <div class="item-buttons">
+          <app-edit-button
+            (onToggleEdition)="toggleEdition($event)"
+            [isEditing]="isEditing"
+          ></app-edit-button>
+          <app-delete-button (deleteBtnEvent)="onDelete()" [modalTarget]="modalTarget"></app-delete-button>
+        </div>
+      </div>
+      <p class="card-text">
+        {{ proyectoItem!.descripcion }}
+      </p>
+      <a [href]="proyectoItem!.demo_url" target="_BLANK" class="btn btn-outline-info mb-2"
+        >Live Demo</a
+      >
+      <a
+        [href]="proyectoItem!.repo_url"
+        target="_BLANK"
+        class="btn btn-outline-secondary"
+        >Repositorio</a
+      >
+    </div>
+  </div>
+  <app-project-edit
+    *ngIf="isEditing"
+    [proyectoEditable]="proyectoItem"
+    (onToggleEdition)="toggleEdition($event)"
+    (onSave)="updateItem($event)"
+    (onCancel)="reloadItem()"
+  ></app-project-edit>

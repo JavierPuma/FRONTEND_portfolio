@@ -1,0 +1,120 @@
+<form
+  #projForm="ngForm"
+  (ngSubmit)="toggleEdition(); saveChanges()"
+  class="editable-item"
+>
+  <h4 class="text-center">Editar</h4>
+  <div class="mb-4">
+    <label for="projTitulo" class="form-label">Título</label>
+    <input
+      #projTitulo="ngModel"
+      id="projTitulo"
+      name="projTitulo"
+      type="text"
+      class="form-control"
+      [class]="{
+        isEditing: projTitulo.errors && (projTitulo.dirty || projTitulo.touched)
+      }"
+      placeholder="Título del Proyecto"
+      autocomplete="off"
+      maxlength="100"
+      [(ngModel)]="proyectoEditable!.titulo"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="projTitulo.errors?.['maxlength']">
+    <p>Máximo 100 carácteres</p>
+  </div>
+  <div class="mb-4">
+    <label for="projDescripcion" class="form-label">Descripción</label>
+    <textarea
+      #projDescripcion="ngModel"
+      name="projDescripcion"
+      id="projDescripcion"
+      class="form-control"
+      [class]="{
+        isEditing:
+          projDescripcion.errors &&
+          (projDescripcion.dirty || projDescripcion.touched)
+      }"
+      rows="5"
+      placeholder="Breve descripción del proyecto..."
+      maxlength="500"
+      [(ngModel)]="proyectoEditable!.descripcion"
+    ></textarea>
+  </div>
+  <div class="text-danger mt-2" *ngIf="projDescripcion.errors?.['maxlength']">
+    <p>Máximo 500 carácteres</p>
+  </div>
+  <div class="mb-4">
+    <label for="projImg" class="form-label">URL de imagen</label>
+    <input
+      #projImg="ngModel"
+      id="projImg"
+      name="projImg"
+      type="text"
+      class="form-control"
+      [class]="{
+        isEditing: projImg.errors && (projImg.dirty || projImg.touched)
+      }"
+      placeholder="http://tusitio.com/imagen.png"
+      autocomplete="off"
+      maxlength="500"
+      [(ngModel)]="proyectoEditable!.img_url"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="projImg.errors?.['maxlength']">
+    <p>Máximo 500 carácteres</p>
+  </div>
+  <div class="mb-4">
+    <label for="projLive" class="form-label">URL del Live Demo</label>
+    <input
+      #projLive="ngModel"
+      id="projLive"
+      name="projLive"
+      type="text"
+      class="form-control"
+      [class]="{
+        isEditing: projLive.errors && (projLive.dirty || projLive.touched)
+      }"
+      placeholder="http://tusitio.com/"
+      autocomplete="off"
+      maxlength="500"
+      [(ngModel)]="proyectoEditable!.demo_url"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="projLive.errors?.['maxlength']">
+    <p>Máximo 500 carácteres</p>
+  </div>
+  <div class="mb-4">
+    <label for="projRepo" class="form-label">URL del Repositorio</label>
+    <input
+      #projRepo="ngModel"
+      id="projRepo"
+      name="projecprojRepotRepo"
+      type="text"
+      class="form-control"
+      [class]="{
+        isEditing: projRepo.errors && (projRepo.dirty || projRepo.touched)
+      }"
+      placeholder="http://github.com/usuario/repositorio"
+      autocomplete="off"
+      maxlength="500"
+      [(ngModel)]="proyectoEditable!.repo_url"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="projRepo.errors?.['maxlength']">
+    <p>Máximo 500 carácteres</p>
+  </div>
+  <div class="p-2 text-center">
+    <button type="submit" class="btn btn-outline-success m-2" [disabled]="!projForm.form.valid">
+      <i id="saveIcon" class="bi bi-check2-circle"></i> Guardar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="toggleEdition(); reload()"
+    >
+      <i id="cancelIcon" class="bi bi-x-circle"></i> Cancelar
+    </button>
+  </div>
+</form>

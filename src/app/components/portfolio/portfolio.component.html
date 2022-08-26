@@ -1,0 +1,26 @@
+<div *ngIf="mostrar">
+    <!--Barra de navegación-->
+    <app-navbar [personaData]="datosPersona"></app-navbar>
+    <!--Contenido desplazable de la página-->
+    <main class="move">
+      <app-hero [personaData]="datosPersona"></app-hero>
+      <app-about
+        [seccionData]="datosSecciones![0]"
+        [imgUrl]="datosPersona!.about_url"
+        [educacionData]="educacionData"
+        [experienciaData]="experienciaData"
+        [personaID]="personaID"
+      ></app-about>
+      <app-skills
+        [habilidadesData]="habilidadesData"
+        [seccionData]="datosSecciones![1]"
+        [personaID]="personaID"
+      ></app-skills>
+      <app-projects
+        [seccionData]="datosSecciones![2]"
+        [proyectosData]="proyectosData"
+        [personaID]="personaID"
+      ></app-projects>
+      <app-contact [seccionData]="datosSecciones![3]"></app-contact>
+    </main>
+  </div>

@@ -1,0 +1,89 @@
+<form
+  #skillForm="ngForm"
+  (ngSubmit)="toggleAdding(); addItem()"
+  class="editable-item"
+>
+  <h4 class="text-center">Agregar</h4>
+  <div class="mb-3">
+    <label for="skill" class="form-label mb-2">Habilidad</label>
+    <input
+      #skill="ngModel"
+      id="skill"
+      name="skill"
+      class="form-control mb-3"
+      [class]="{ 'is-invalid': skill.errors && (skill.dirty || skill.touched) }"
+      type="text"
+      placeholder="EJ: HTML"
+      required
+      autocomplete="off"
+      maxlength="45"
+      [(ngModel)]="habilidadItem!.nombre"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="skill.errors?.['maxlength']">
+    <p>Máximo 45 carácteres</p>
+  </div>
+  <div class="mb-3">
+    <label for="icon" class="form-label"
+      >Icono ( <i [class]="habilidadItem!.icono"></i> )<br
+    /></label>
+    <input
+      #icon="ngModel"
+      id="icon"
+      name="icon"
+      type="text"
+      class="form-control"
+      [class]="{ 'is-invalid': skill.errors && (skill.dirty || skill.touched) }"
+      placeholder="EJ: fa-brands fa-html5"
+      autocomplete="off"
+      maxlength="50"
+      [(ngModel)]="habilidadItem!.icono"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="skill.errors?.['maxlength']">
+    <p>Máximo 50 carácteres</p>
+  </div>
+  <div class="mb-3">
+    <label for="skill-lvl" class="form-label mb-2">Nivel</label>
+    <input
+      #lvl="ngModel"
+      class="form-control mb-3"
+      [class]="{ 'is-invalid': skill.errors && (skill.dirty || skill.touched) }"
+      name="lvl"
+      id="skill-lvl"
+      type="text"
+      placeholder="EJ: Intermedio/Avanzado"
+      required
+      maxlength="45"
+      [(ngModel)]="habilidadItem!.nivel"
+    />
+  </div>
+  <div class="text-danger mt-2" *ngIf="skill.errors?.['maxlength']">
+    <p>Máximo 45 carácteres</p>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="progress"
+      >Barra de progreso ({{ habilidadItem!.progreso }}%)</label
+    >
+    <input
+      class="form-range"
+      name="progress"
+      id="progress"
+      type="range"
+      required
+      [(ngModel)]="habilidadItem!.progreso"
+    />
+  </div>
+  <div class="p-2">
+    <button type="submit" class="btn btn-outline-success m-2">
+      <i id="saveIcon" class="bi bi-check2-circle"></i> Guardar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="toggleAdding()"
+    >
+      <i id="cancelIcon" class="bi bi-x-circle"></i> Cancelar
+    </button>
+  </div>
+</form>

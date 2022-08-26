@@ -1,0 +1,29 @@
+<div>
+    <div
+      class="professional-header d-flex justify-content-between align-items-center"
+    >
+      <h3 class="mb-3 fw-bold">Experiencia Laboral</h3>
+      <div class="mb-3">
+        <app-add-button
+          [isAdding]="isAdding"
+          (onToggleAdding)="toggleAdding($event)"
+        ></app-add-button>
+      </div>
+    </div>
+  
+    <app-experience-add-item
+      *ngIf="isAdding"
+      [experienciaList]="experienciaData"
+      (onToggleAdding)="toggleAdding($event)"
+      (onAddItem)="reloadData()"
+    ></app-experience-add-item>
+  
+    <!-- Iteramos a traves del array de elementos, y generamos uno nuevo con su respectivo Data Binding. -->
+    <div *ngFor="let experienciaItem of experienciaData; let i = index">
+      <app-experience-item
+        *ngIf="!isEditing"
+        [experienciaItem]="experienciaItem"
+        (onItemDelete)="deleteItem(experienciaItem, i)"
+      ></app-experience-item>
+    </div>
+  </div>

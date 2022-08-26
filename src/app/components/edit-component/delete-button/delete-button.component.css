@@ -1,0 +1,7 @@
+.modal-open {
+    overflow: hidden !important; 
+}
+
+.modal-backdrop {
+    z-index: -1;
+}

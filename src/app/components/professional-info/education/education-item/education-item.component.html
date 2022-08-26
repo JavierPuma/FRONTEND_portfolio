@@ -1,0 +1,28 @@
+<div [ngClass]="{'info-item': !isEditing}">
+    <div *ngIf="!isEditing" class="item-container">
+      <div class="item-title d-flex justify-content-between align-items-center">
+        <h4>{{ educacionItem!.titulo }}</h4>
+        <div class="item-buttons">
+          <app-edit-button
+            (onToggleEdition)="toggleEdition($event)"
+          ></app-edit-button>
+          <app-delete-button (deleteBtnEvent)="onDelete()" [modalTarget]="modalTarget" ></app-delete-button>
+  
+        </div>
+      </div>
+      <h5>{{ educacionItem!.fecha }}</h5>
+      <p>
+        <em>{{ educacionItem!.institucion }}</em>
+      </p>
+      <p>
+        {{ educacionItem!.descripcion }}
+      </p>
+    </div>
+    <app-education-edit
+      *ngIf="isEditing"
+      [educacionEditable]="educacionItem"
+      (onToggleEdition)="toggleEdition($event)"
+      (onSave)="updateItem($event)"
+      (onCancel)="reloadItem()"
+    ></app-education-edit>
+  </div>

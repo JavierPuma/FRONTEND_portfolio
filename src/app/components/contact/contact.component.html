@@ -1,0 +1,98 @@
+<!--Formulario de contacto-->
+<section id="contacto" class="section-info">
+    <div class="container">
+      <div class="section-title">
+        <div
+          class="section-header d-flex justify-content-between align-items-center"
+        >
+          <h2 class="fw-bold">Contacto</h2>
+          <!-- Componente 'Edit Button'-->
+          <app-edit-button
+            [isEditing]="isEditing"
+            (onToggleEdition)="toggleEdition($event); reloadSeccion()"
+          ></app-edit-button>
+        </div>
+        <!-- Contenido editable, utilizamos directivas y binding para manejarlo-->
+        <app-edit-component
+          *ngIf="isEditing"
+          [seccionEditable]="seccionData"
+          (onToggleEdition)="toggleEdition($event)"
+          (onSave)="updateSeccion($event)"
+          (onCancel)="reloadSeccion()"
+        ></app-edit-component>
+        <!-- Utilizamos [innerHTML] en lugar de Template Binding para poder utilizar marcado HTML en nuestro texto (negrita, salto de linea, cursiva, etc.) -->
+        <p *ngIf="!isEditing" [innerHTML]="seccionData!.descripcion"></p>
+      </div>
+      <div class="row d-flex justify-content-center flex-row">
+        <div class="col-lg-6">
+          <h3 class="text-center">¡Construyamos algo juntos!</h3>
+          <hr />
+          <form
+          ngNoForm
+            action="https://formsubmit.co/f4be33e69b9360fa1f60a9026ba46950"
+            method="POST"
+            class="form"
+            autocomplete="off"
+          >
+            <div class="mb-3">
+              <label for="contactName" class="form-label fw-bold"
+                >* Nombre:</label
+              >
+              <input
+                id="contactName"
+                name="contactName"
+                type="text"
+                class="form-control"
+                placeholder="Ej: Bruno Diaz"
+                pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+                title="Utiliza únicamente letras y espacios en blanco."
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="contactEmail" class="form-label fw-bold"
+                >* E-Mail:</label
+              >
+              <input
+                id="contactEmail"
+                name="contactEmail"
+                type="email"
+                class="form-control"
+                placeholder="Ej: ejemplo@correo.com"
+                pattern="^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$"
+                title="Introduce un correo electrónico válido."
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="contactComment" class="form-label fw-bold"
+                >* Mensaje:</label
+              >
+              <textarea
+                id="contactComment"
+                name="contactComment"
+                cols="30"
+                rows="3"
+                class="form-control"
+                placeholder="¡Dejame un mensaje!"
+                required
+              ></textarea>
+            </div>
+            <i>* Campos requeridos</i>
+            <div class="mb-3 text-center">
+              <input type="hidden" name="_captcha" value="false" />
+              <input
+                type="hidden"
+                name="_next"
+                [value]="frontUrl"
+              />
+              <button type="submit" class="btn btn-outline-info mt-3">
+                ¡Enviar!
+              </button>
+            </div>
+          </form>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </section>

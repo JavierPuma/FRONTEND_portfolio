@@ -1,0 +1,47 @@
+<!--Seccion Sobre Mí-->
+<section id="sobre-mi" class="section-info">
+  
+  <div class="container">
+    <div class="section-title">
+      <div
+        class="section-header d-flex justify-content-between align-items-center"
+      >
+        <h2 class="fw-bold">Sobre mí</h2>
+        <!-- Componente 'Edit Button'-->
+        <app-edit-button
+          [isEditing]="isEditing"
+          (onToggleEdition)="toggleEdition($event); reloadSeccion()"
+        ></app-edit-button>
+    </div>
+      <!-- Utilizamos [innerHTML] en lugar de Template Binding para poder utilizar marcado HTML en nuestro texto (negrita, salto de linea, cursiva, etc.) -->
+      <p *ngIf="!isEditing" [innerHTML]="seccionData!.descripcion"></p>
+      <!-- Contenido editable, utilizamos directivas y binding para manejarlo-->
+      <app-edit-component
+        *ngIf="isEditing"
+        [seccionEditable]="seccionData"
+        (onToggleEdition)="toggleEdition($event)"
+        (onSave)="updateSeccion($event)"
+        (onUpdateImg)="saveImg($event)"
+        (onCancel)="reloadSeccion()"
+      ></app-edit-component>
+    </div>
+    <!-- Seccion educacion/experiencia -->
+    <div class="row">
+      <div class="col-lg-4">
+        <!--Imagen de sección Educación/Experiencia-->
+        <img
+          [src]="imgUrl"
+          alt="Foto de Perfil"
+          class="img-fluid about-img"
+        />
+      </div>
+      <!--Sección Educación/Experiencia-->
+      <div id="professional-info" class="col-lg-8 mt-4">
+        <div class="row">
+          <app-education [personaID]="personaID" [educacionData]="educacionData" id="education" class="col-lg-6"></app-education>
+          <app-experience [personaID]="personaID" [experienciaData]="experienciaData" id="experience" class="col-lg-6"></app-experience>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

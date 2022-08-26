@@ -1,0 +1,104 @@
+<div class="container-fluid vertical-center bg-image">
+    <form
+      #loginForm="ngForm"
+      *ngIf="!isLoggedIn"
+      (ngSubmit)="loginForm.form.valid && login()"
+      (keydown.enter)="$event.preventDefault()"
+      class="editable-item col-md-6 mx-auto p-5 pt-4"
+      autocomplete="off"
+    >
+      <div class="d-flex align-items-center justify-content-between w-100">
+        <button type="button" class="btn btn-outline-success" (click)="portfolioLink()">
+          <i class="fa-solid fa-door-open"></i> Portfolio
+        </button>
+        <button type="button" class="btn btn-outline-info" routerLink="/registro">
+          <i class="fa-solid fa-user-plus"></i> Registrarse
+        </button>
+      </div>
+  
+      <h1 class="text-center">Ingreso</h1>
+      <hr />
+      <div class="mb-3">
+        <label for="username">Usuario:</label>
+        <input
+          type="text"
+          #username="ngModel"
+          id="username"
+          name="username"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': username.errors && (username.dirty || username.touched),
+            'is-valid': !username.errors && (username.dirty || username.touched)
+          }"
+          [(ngModel)]="form.username"
+          required
+          minlength="3"
+          maxlength="20"
+        />
+        <div
+          *ngIf="username.errors && (username.dirty || username.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="username.errors['required']">
+            Ingresa un nombre de usuario
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password">Contraseña:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          #password="ngModel"
+          class="form-control"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          [class]="{
+            'is-invalid': password.errors && (password.dirty || password.touched),
+            'is-valid': !password.errors && (password.dirty || password.touched)
+          }"
+        />
+        <div
+          *ngIf="password.errors && (password.dirty || password.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="password.errors['required']">
+            Por favor ingresa una contraseña.
+          </div>
+          <div *ngIf="password.errors['minlength']">
+            La contraseña debe tener al menos 6 carácteres.
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          type="submit"
+          class="btn"
+          [class]="loginForm.valid ? 'btn-success' : 'btn-outline-secondary'"
+          [disabled]="!loginForm.valid"
+        >
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Ingresar
+        </button>
+      </div>
+      <hr />
+      <div
+        class="alert alert-warning"
+        *ngIf="loginForm.submitted && isLoginFailed"
+      >
+        Hubo un problema con el ingreso.<br />{{ errorMessage }}
+      </div>
+    </form>
+    <div
+      class="alert alert-success my-auto mx-auto text-center toFront"
+      *ngIf="isLoggedIn"
+    >
+      <h5>¡Usted ingresó correctamente!</h5>
+      <button class="btn btn-success mb-2" (click)="portfolioLink()">
+        <i class="fa-solid fa-door-open"></i> Ir al portfolio
+      </button>
+      <br />
+      <button class="btn btn-danger" (click)="logout()"><i class="fa-solid fa-user-xmark"></i> Cerrar Sesión</button>
+    </div>
+  </div>

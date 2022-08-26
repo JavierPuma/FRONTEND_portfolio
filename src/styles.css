@@ -1,0 +1,218 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+==========
+ESTILOS GLOBALES
+==========
+*/
+:root {
+    --dark: #040b14;
+    --light: #a8a9b4;
+    --grey: #2c2f3f;
+    --blue: #149ddd;
+    --darkblue: #0288c7;
+    --darkerblue: #027ab1;
+    --white: #fff;
+  }
+  
+  body {
+    background-color: var(--dark) !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  /* Ocultamos la barra de scroll */
+  
+  /* Scrollbar Width */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--grey);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 3rem;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--darkblue);
+  }
+  
+  /* Handle on active */
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--darkerblue);
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  
+  p {
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0 !important;
+  }
+  
+  a,
+  a:link,
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  /* Eliminamos las flechas de los input de tipo number.*/
+  
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  
+  /*
+  ==========
+  MODIFICACIONES A ESTILOS DE BOOTSTRAP
+  ==========
+  */
+  
+  /*Soluciona desplazamiento de fondo al abrir ventana modal*/
+  
+  /* .modal-open {
+    overflow: auto !important;
+    padding-right: 0 !important;
+  } */
+  
+  /*Modificamos el color de fondo de los modaless por defecto de Bootstrap*/
+  .modal-content {
+    background: var(--dark) !important;
+  }
+  
+  /*Modificamos los colores de los input por defecto de Bootstrap*/
+  .form-control {
+    background-color: var(--dark) !important;
+    color: var(--white) !important;
+  }
+  
+  .form-control:focus {
+    background-color: var(--dark) !important;
+    color: var(--white) !important;
+  }
+  
+  /*
+  ==========
+  ESTILOS DE SECCIONES (GENERAL)
+  ==========
+  */
+  
+  .section-info {
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 8rem 1rem;
+  }
+  
+  @media (max-width: 1200px) {
+    .section-info {
+      padding: 1rem;
+    }
+  }
+  
+  .section-title h2 {
+    padding: 1rem;
+    padding-left: 0;
+  }
+  
+  .section-title h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--blue);
+    margin-top: 1rem;
+  }
+  
+  /*
+  ==========
+  ESTILOS ICONOS PARA EDITAR
+  ==========
+  */
+  
+  .edit-icon {
+    margin-bottom: 1.5rem;
+    padding-right: 5px;
+  }
+  
+  .edit-icon:hover {
+    cursor: pointer;
+  }
+  
+  .editable-item {
+    width: 100%;
+    background: var(--dark);
+    color: var(--white);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: solid 1px var(--blue);
+    border-radius: 5px;
+    resize: none;
+  }
+  
+  /*
+  ==========
+  ESTILO MODALES
+  ==========
+  */
+  
+  .modal button[type="submit"] {
+    margin-right: 0.5rem;
+  }
+  
+  /*
+  ==========
+  SECCIÓN "SOBRE MÍ" (Global porque se usa en distintos componentes)
+  ==========
+  */
+  
+  .about-img {
+    border-radius: 1rem;
+  }
+  
+  .info-item {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 2px solid var(--blue);
+    margin: 0 3rem 3rem 1rem;
+  }
+  
+  .info-item h4 {
+    font-size: 1.2rem;
+  }
+  
+  .info-item h4::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -9px;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--dark);
+    border: solid 2px var(--blue);
+    border-radius: 1rem;
+  }
+  
+  .info-item h5 {
+    font-size: 1rem;
+  }

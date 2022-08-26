@@ -1,0 +1,124 @@
+<div class="container-fluid vertical-center bg-image">
+    <form
+    #registerForm="ngForm"
+    *ngIf="!isSuccessful"
+    (keydown.enter)="$event.preventDefault()"
+    (ngSubmit)="registerForm.form.valid && registerUser()"
+    class="editable-item col-md-6 mx-auto p-5 pt-4"
+    autocomplete="off"
+    >
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <button type="button" class="btn btn-outline-info" routerLink="/portfolio"><i class="fa-solid fa-door-open"></i> Portfolio</button>
+      <button type="button" class="btn btn-outline-success" routerLink="/ingreso"><i class="fa-solid fa-arrow-right-to-bracket"></i> Ingresar</button>
+    </div>
+      <h1 class="text-center">Registro</h1>
+      <hr />
+      <div class="mb-3">
+        <label for="username">Usuario:</label>
+        <input
+          type="text"
+          #username="ngModel"
+          id="username"
+          name="username"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': username.errors && (username.dirty || username.touched),
+            'is-valid': !username.errors && (username.dirty || username.touched)
+          }"
+          [(ngModel)]="form.username"
+          required
+          minlength="3"
+          maxlength="20"
+        />
+        <div
+          *ngIf="username.errors && (username.dirty || username.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="username.errors['required']">
+            Ingresa un nombre de usuario
+          </div>
+          <div *ngIf="username.errors['minlength']">
+            El usuario debe tener al menos 3 carácteres.
+          </div>
+          <div *ngIf="username.errors['maxlength']">
+            El usuario no puede tener más de 20 carácteres.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email">E-Mail:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          #email="ngModel"
+          class="form-control"
+          [(ngModel)]="form.email"
+          [ngClass]="{
+            'is-invalid': email.errors && (email.dirty || email.touched),
+            'is-valid': !email.errors && (email.dirty || email.touched)
+          }"
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        />
+        <div
+          *ngIf="email.errors && (email.dirty || email.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="email.errors['required']">
+            Por favor ingresa una dirección de e-mail.
+          </div>
+          <div *ngIf="email.errors['pattern']">Ingresa un e-mail válido.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password">Contraseña:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          #password="ngModel"
+          class="form-control"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          [class]="{
+            'is-invalid': password.errors && (password.dirty || password.touched),
+            'is-valid': !password.errors && (password.dirty || password.touched)
+          }"
+        />
+        <div
+          *ngIf="password.errors && (password.dirty || password.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="password.errors['required']">
+            Por favor ingresa una contraseña.
+          </div>
+          <div *ngIf="password.errors['minlength']">
+            La contraseña debe tener al menos 6 carácteres.
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          type="submit"
+          class="btn"
+          [class]="registerForm.valid ? 'btn-info' : 'btn-outline-secondary'"
+          [disabled]="!registerForm.valid"
+        >
+        <i class="fa-solid fa-user-plus"></i> Registrarse
+        </button>
+      </div>
+      <hr />
+      <div
+        class="alert alert-warning"
+        *ngIf="registerForm.submitted && registerFailed"
+      >
+        Hubo un problema con su solicitud de registro.<br />{{ errorMessage }}
+      </div>
+    </form>
+    <div class="alert alert-success my-auto mx-auto text-center" *ngIf="isSuccessful">
+      <h5>¡Usuario registrado con éxito!</h5>
+      <button class="btn btn-success" routerLink="/ingreso"><i class="fa-solid fa-arrow-right-to-bracket"></i> Ingresar</button>
+    </div>
+  </div>

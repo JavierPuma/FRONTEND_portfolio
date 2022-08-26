@@ -1,0 +1,15 @@
+.move {
+    transition: 0.5s ease-in-out; /*Añadimos una transición al momento de modificarse el margen*/
+    overflow-x: hidden;
+  }
+  
+  /* Movemos el contenedor a la derecha en pantallas grandes, para que la barra lateral no tape el contenido. */
+  @media (min-width: 1200px) {
+    /*
+        - Movemos el contenido a la derecha en resolucionbes mayores a.
+        */
+    .move {
+      margin-left: 280px;
+      transition: 0.5s ease-in-out;
+    }
+  }
